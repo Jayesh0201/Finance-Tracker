@@ -4,21 +4,6 @@ This is a complete college mini project: a personal finance website with **user 
 
 The frontend follows a "bank statement / ledger" visual identity — hairline dividers, tabular mono numerals for money, colour-coded categories, and a passbook-styled sign-in screen — instead of a generic dashboard look, so it reads as a purpose-built finance tool rather than a template.
 
-## 1. What you need
-
-Install **Node.js LTS** from https://nodejs.org. Install **VS Code** if you do not have it.
-
-## 2. Run it on your computer
-
-1. Put this project folder somewhere convenient and open it with VS Code.
-2. Open the VS Code terminal: **Terminal → New Terminal**.
-3. Enter `npm install`. This downloads Express and SQLite.
-4. Enter `npm start`.
-5. Open `http://localhost:3000` in your browser.
-
-For development, use `npm run dev`; it restarts the backend automatically after changes.
-
-## 3. Every important file, explained
 
 | File | Purpose |
 |---|---|
@@ -44,14 +29,14 @@ For development, use `npm run dev`; it restarts the backend automatically after 
 
 When the page opens: `app.js` → `GET /api/dashboard` → `server.js` reads SQL tables → sends JSON → `app.js` displays cards and lists.
 
-## 6. Presentation talking points
+
 
 - **Problem:** Students and young professionals often record expenses, savings, and investments in separate places.
 - **Solution:** WealthWise provides one simple dashboard and intelligent financial insights.
 - **Frontend:** Responsive HTML/CSS/JavaScript UI.
 - **Backend:** Node.js and Express REST API for secure validation and business calculations.
 - **Database:** SQLite relational database with separate Expenses, Investments, Goals, and Accounts tables.
-- **Future work:** User login, real bank API integration, charts, recurring expenses, and an LLM API such as OpenAI for natural conversational guidance.
+- **Future work:**  real bank API integration, charts, recurring expenses, and an LLM API such as OpenAI for natural conversational guidance.
 
 ## Important note
 
