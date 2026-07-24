@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WealthWise | Personal Finance Statement</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <strong>Wealth<span>Wise</span></strong>
+      <small>Finance Dashboard</small>
+    </div>
+    <div class="header-right">
+      <div class="header-meta hidden" id="statementDateWrap">Statement date<br><strong id="statementDate">—</strong></div>
+      <div class="user-area hidden" id="userArea">
+        <div class="user-avatar" id="userAvatar">–</div>
+        <div>
+          <div class="user-name" id="userName">—</div>
+          <div class="user-email" id="userEmail">—</div>
+        </div>
+        <button class="btn-ghost" id="logoutButton">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="auth-screen hidden" id="authScreen">
+    <div class="auth-card">
+      <div class="auth-side">
+        <div>
+          <p class="eyebrow">Personal Finance Dashboard</p>
+          <h2>Sign the <em>ledger.</em></h2>
+          <p>One account, one statement — expenses, investments, goals and accounts, kept private to you.</p>
+        </div>
+        <div class="ledger-lines">
+          <div><span>Expense tracking</span><b>✓</b></div>
+          <div><span>Portfolio gain/loss</span><b>✓</b></div>
+          <div><span>Savings goals</span><b>✓</b></div>
+          <div><span>Private per account</span><b>✓</b></div>
+        </div>
+      </div>
+      <div class="auth-form-side">
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab active" data-tab="login">Sign in</button>
+          <button type="button" class="auth-tab" data-tab="register">Create account</button>
+        </div>
+        <div class="auth-error" id="authError"></div>
+
+        <form class="auth-form-panel active" id="loginForm" data-panel="login">
+          <label class="field">Email
+            <input name="email" type="email" placeholder="you@example.com" required>
+          </label>
+          <label class="field">Password
+            <input name="password" type="password" placeholder="••••••••" required>
+          </label>
+          <button type="submit">Sign in →</button>
+        </form>
+
+        <form class="auth-form-panel" id="registerForm" data-panel="register">
+          <label class="field">Name
+            <input name="name" placeholder="Your name" required>
+          </label>
+          <label class="field">Email
+            <input name="email" type="email" placeholder="you@example.com" required>
+          </label>
+          <label class="field">Password
+            <input name="password" type="password" placeholder="At least 8 characters" minlength="8" required>
+          </label>
+          <button type="submit">Create account →</button>
+        </form>
+
+        <p class="auth-switch" id="authSwitchLogin">New here? <button type="button" data-tab="register">Create an account</button></p>
+        <p class="auth-switch hidden" id="authSwitchRegister">Already have an account? <button type="button" data-tab="login">Sign in</button></p>
+      </div>
+    </div>
+  </section>
+
+  <main class="hidden" id="appShell">
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Personal Finance Dashboard</p>
+        <h1>Every rupee, <em>accounted for.</em></h1>
+        <p class="lede">Track spending, investments and savings goals in one statement — and ask WealthWise for a plain-language read on where you stand.</p>
+      </div>
+      <div class="hero-figure">
+        <p>Net worth</p>
+        <strong id="heroNetWorth">₹0</strong>
+        <small id="heroNetWorthNote">Cash + investment value</small>
+      </div>
+    </section>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="grid main-grid">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Add a transaction</h2>
+          <span class="panel-hint">Expenses</span>
+        </div>
+        <form id="expenseForm">
+          <label class="field">Description
+            <input name="title" placeholder="e.g. Groceries, Uber, Netflix" required>
+          </label>
+          <label class="field">Category
+            <select name="category" required>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label class="field">Amount (₹)
+            <input name="amount" type="number" min="0" step="0.01" placeholder="0.00" required>
+          </label>
+          <label class="field">Date
+            <input name="expense_date" type="date" required>
+          </label>
+          <button type="submit">Add expense</button>
+        </form>
+      </article>
+
+      <article class="panel assistant">
+        <div class="panel-head">
+          <h2>Ask WealthWise</h2>
+          <span class="panel-hint">Rules-based assistant</span>
+        </div>
+        <div class="assistant-reply" id="assistantReply">Ask about saving, your investments, budget, or net worth — I'll read it straight off your ledger.</div>
+        <div class="assistant-chips">
+          <button type="button" class="chip" data-q="How can I save more?">Saving tips</button>
+          <button type="button" class="chip" data-q="How is my investment portfolio doing?">Portfolio check</button>
+          <button type="button" class="chip" data-q="What's my net worth?">Net worth</button>
+        </div>
+        <form id="assistantForm">
+          <input id="question" placeholder="Type a question…" required>
+          <button type="submit">Ask →</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="grid three">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Investments</h2>
+          <span class="panel-hint">Portfolio</span>
+        </div>
+        <form id="investmentForm">
+          <label class="field">Name
+            <input name="name" placeholder="e.g. Nifty 50 Index Fund" required>
+          </label>
+          <label class="field">Type
+            <input name="investment_type" placeholder="Mutual Fund, Stock, FD…" required>
+          </label>
+          <label class="field">Invested amount (₹)
+            <input name="invested_amount" type="number" min="0" step="0.01" placeholder="0.00" required>
+          </label>
+          <label class="field">Current value (₹)
+            <input name="current_value" type="number" min="0" step="0.01" placeholder="0.00" required>
+          </label>
+          <button type="submit">Add investment</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Savings goals</h2>
+          <span class="panel-hint">Targets</span>
+        </div>
+        <form id="goalForm">
+          <label class="field">Goal name
+            <input name="name" placeholder="e.g. Emergency fund" required>
+          </label>
+          <label class="field">Target amount (₹)
+            <input name="target_amount" type="number" min="1" step="0.01" placeholder="0.00" required>
+          </label>
+          <label class="field">Already saved (₹)
+            <input name="saved_amount" type="number" min="0" step="0.01" placeholder="0.00" required>
+          </label>
+          <label class="field">Target date
+            <input name="target_date" type="date">
+          </label>
+          <button type="submit">Create goal</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Bank accounts</h2>
+          <span class="panel-hint">Cash</span>
+        </div>
+        <form id="accountForm">
+          <label class="field">Account name
+            <input name="name" placeholder="e.g. HDFC Savings" required>
+          </label>
+          <label class="field">Type
+            <input name="account_type" placeholder="Savings, Cash, Wallet…" required>
+          </label>
+          <label class="field">Balance (₹)
+            <input name="balance" type="number" min="0" step="0.01" placeholder="0.00" required>
+          </label>
+          <button type="submit">Add account</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="grid two">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Recent expenses</h2>
+          <span class="panel-hint" id="expenseCount"></span>
+        </div>
+        <div id="expensesList" class="list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Spending by category</h2>
+          <span class="panel-hint">Share of total</span>
+        </div>
+        <div id="breakdownList" class="breakdown"></div>
+      </article>
+    </section>
+
+    <section class="grid two">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Portfolio</h2>
+          <span class="panel-hint" id="investmentCount"></span>
+        </div>
+        <div id="portfolioList" class="list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Goals progress</h2>
+          <span class="panel-hint" id="goalCount"></span>
+        </div>
+        <div id="goalsList" class="list"></div>
+      </article>
+    </section>
+
+  </main>
+
+  <footer class="hidden" id="footer">WealthWise · Personal Finance Dashboard · Node.js, Express &amp; SQLite</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
